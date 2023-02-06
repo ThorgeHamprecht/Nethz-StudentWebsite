@@ -1,2 +1,2 @@
 # Nethz-StudentWebsite
-Repository documenting the building of my student-websiteh: ttps://n.ethz.ch/~thamprecht/ 
+Repository documenting the building of my student-websiteh: https://n.ethz.ch/~thamprecht/ 
