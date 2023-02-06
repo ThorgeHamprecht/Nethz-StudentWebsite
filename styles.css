@@ -98,7 +98,7 @@ h1 {
         position: absolute;
         top: -1000px;
         opacity: 0;
-        transition: all 0.5s ease;
+        transition: all 0.3s ease;
         height: 210px;
         z-index: -1;
     }
@@ -107,7 +107,7 @@ h1 {
         background: black;
         top: 100%;
         opacity: 1;
-        transition: all 0.5s ease;
+        transition: all 0.3s ease;
         z-index: 99;
         height: 210px;
         font-size: 1.5rem;
@@ -121,7 +121,7 @@ h1 {
         width: 25px;
         height: 3px;
         margin: 5px auto;
-        transition: all 0.4s ease-in;
+        transition: all 0.3s ease-in;
         background: snow;
     }
 
@@ -176,4 +176,21 @@ h1 {
     width: 100%;
     max-width: 1300px;
     padding: 0 50px;
+}
+
+.main__content h1 {
+    font-size: 4rem;
+    background-color: lightseagreen;
+    background-image: linear-gradient(to top, seagreen 0%, lightseagreen 50%, lightseagreen 75%, lightseagreen 100%);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.main__content h2 {
+    font-size: 2rem;
+}
+
+.main__content p {
+    font-size: 1rem;
 }
