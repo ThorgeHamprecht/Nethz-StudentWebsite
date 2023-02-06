@@ -164,6 +164,9 @@ h1 {
 .main {
     background-color: antiquewhite;
 }
+body {
+    background-image: linear-gradient(to bottom, antiquewhite 0%, black 100%);
+}
 
 .main__container {
     display: grid;
@@ -171,7 +174,7 @@ h1 {
     align-items: center;
     justify-self: center;
     margin: 0 auto;
-    height: 90vh;
+    height: 100vh;
     z-index: 1;
     width: 100%;
     max-width: 1300px;
