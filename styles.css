@@ -159,3 +159,21 @@ h1 {
         transform: translateY(-8px) rotate(-45deg);
     }
 }
+
+/* Main Section */
+.main {
+    background-color: antiquewhite;
+}
+
+.main__container {
+    display: grid;
+    grid-template-columns: auto;
+    align-items: center;
+    justify-self: center;
+    margin: 0 auto;
+    height: 90vh;
+    z-index: 1;
+    width: 100%;
+    max-width: 1300px;
+    padding: 0 50px;
+}
