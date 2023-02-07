@@ -9,7 +9,7 @@ window.onload = function () {
     board = document.getElementById("board");
     board.height = rows * blockSize;
     board.width = columns * blockSize;
-    board.getContext("2d")
+    board.getContext("2d");
 
     update();
 }

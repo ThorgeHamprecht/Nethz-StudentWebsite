@@ -169,10 +169,10 @@ h1 {
     background-color: antiquewhite;
     height: fit-content;
     min-height: 100vh;
+    z-index: 0;
 }
 body {
     background-image: linear-gradient(to bottom, antiquewhite 0%, black 100%);
-    z-index: -10;
 }
 
 .main__container {
