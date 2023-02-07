@@ -10,4 +10,11 @@ window.onload = function () {
     board.height = rows * blockSize;
     board.width = columns * blockSize;
     board.getContext("2d")
+
+    update();
+}
+
+function update () {
+    context.fillStyle = "black";
+    context.fillRect(0,0, board.width, board.height);
 }

@@ -196,6 +196,12 @@ body {
     background-size: 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
+}
+
+.main__content canvas {
+    z-index: 99;
+
 }
 
 .main__content h2 {
