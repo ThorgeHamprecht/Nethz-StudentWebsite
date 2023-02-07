@@ -1,3 +1,4 @@
+
 h1 {
     color: black;
 }
@@ -163,9 +164,11 @@ h1 {
 /* Main Section */
 .main {
     background-color: antiquewhite;
+    height: fit-content;
 }
 body {
     background-image: linear-gradient(to bottom, antiquewhite 0%, black 100%);
+    z-index: -10;
 }
 
 .main__container {
@@ -174,7 +177,7 @@ body {
     align-items: center;
     justify-self: center;
     margin: 0 auto;
-    height: 100vh;
+    height: fit-content;
     z-index: 1;
     width: 100%;
     max-width: 1300px;
