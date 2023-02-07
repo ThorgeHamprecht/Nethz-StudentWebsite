@@ -74,10 +74,12 @@ h1 {
     height: 100%;
 }
 
+
 .navbar__links:hover {
     color: lightseagreen;
     transition: all 0.3s ease;
 }
+
 
 @media screen and (max-width: 960px){
     .navbar__container{
@@ -159,6 +161,8 @@ h1 {
     #mobile-menu.is-active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
     }
+
+
 }
 
 /* Main Section */
