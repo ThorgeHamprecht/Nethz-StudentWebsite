@@ -3,7 +3,7 @@ document.body.style.overflow = "hidden";
 
 //board
 var blockSize = 25;
-var rows = 2;
+var rows = 20;
 var columns = 25;
 var board;
 var context;
@@ -34,7 +34,7 @@ var score = 0;
 
 window.onload = function () {
     board = document.getElementById("board");
-    board.height = (rows +1) * blockSize;
+    board.height = (rows + 1) * blockSize;
     board.width = columns * blockSize;
     context = board.getContext("2d");
 
@@ -115,7 +115,13 @@ function update () {
     context.fillRect(snakeX, snakeY, blockSize, blockSize);
 
     //draw score
-    context.font = "Kumbh"
+    context.fillStyle = "navajowhite";
+    context.fillRect(0, rows * blockSize, columns*blockSize, blockSize);
+
+    context.font = "20px Kumbh sans";
+    context.textAlign = "start";
+    context.fillStyle = "snow";
+    context.fillText("Score: " + score, 25, blockSize * rows + 20);
 
 }
 

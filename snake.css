@@ -207,6 +207,8 @@ body {
 }
 .main__content__snake canvas {
     z-index: 99;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .main__content h2 {
