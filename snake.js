@@ -23,6 +23,10 @@ var snakeBody = [];
 var foodX = 0;
 var foodY = 0;
 
+// Game State
+var gameOver = false;
+var blinkingHead = 0;
+
 window.onload = function () {
     board = document.getElementById("board");
     board.height = rows * blockSize;
@@ -39,6 +43,24 @@ window.onload = function () {
 }
 
 function update () {
+    //gameover update stop
+    if (gameOver) {
+        blinkingHead += 1;
+        if (blinkingHead > 2) {
+            context.fillStyle = "tomato";
+            context.fillRect(snakeX, snakeY, blockSize, blockSize);
+            if (blinkingHead === 4 ) {
+                blinkingHead = 0;
+            }
+        }
+        else {
+            context.fillStyle = "gainsboro";
+            context.fillRect(snakeX, snakeY, blockSize, blockSize);
+        }
+        return;
+    }
+
+    //fill canvas with black background
     context.fillStyle = "black";
     context.fillRect(0,0, board.width, board.height);
 
@@ -57,13 +79,16 @@ function update () {
         snakeBody.shift();
     }
 
-
     //draw collectables
     context.fillStyle = "salmon";
     context.fillRect(foodX, foodY, blockSize, blockSize);
 
     //draw snake body
     for (let i = 0; i < snakeBody.length; i++) {
+        //gameover check
+        if (i !== snakeBody.length - 1 && snakeBody[i][0] === snakeX && snakeBody[i][1] === snakeY) {
+            gameOver = true;
+        }
         context.fillStyle = "seagreen";
         context.fillRect(snakeBody[i][0], snakeBody[i][1], blockSize, blockSize);
     }
