@@ -1,3 +1,6 @@
+document.body.style.overflow = "hidden";
+
+
 //board
 var blockSize = 25;
 var rows = 20;
@@ -8,6 +11,9 @@ var context;
 // Snake Head
 var snakeX = blockSize * 5;
 var snakeY = blockSize * 5;
+
+var xSpeed = 0;
+var ySpeed = 0;
 
 // Collectables
 var foodX = blockSize * 8;
@@ -20,15 +26,21 @@ window.onload = function () {
     context = board.getContext("2d");
 
     placeCollectables();
-    document.addEventListener("keyup", movement);
+    document.addEventListener("keydown", movement);
 
-    update();
+    //update();
+    setInterval(update, 1000/10);
 }
 
 function update () {
     console.log(context);
     context.fillStyle = "midnight";
     context.fillRect(0,0, board.width, board.height);
+
+    //update position
+    snakeX += xSpeed * blockSize;
+    snakeY += ySpeed * blockSize;
+
 
     //draw snake
     context.fillStyle = "lightseagreen";
@@ -48,6 +60,26 @@ function placeCollectables() {
     }
 }
 
-function movement() {
+function movement(o) {
+    if (o.code == "KeyW" || o.code == "ArrowUp") {
+        xSpeed = 0;
+        ySpeed = -1;
+        console.log("up");
+    }
+    else if (o.code == "KeyS" || o.code == "ArrowDown") {
+        xSpeed = 0;
+        ySpeed = 1;
+        console.log("down");
+    }
+    else if (o.code == "KeyA" || o.code == "ArrowLeft") {
+        xSpeed = -1;
+        ySpeed = 0;
+        console.log("left");
+    }
+    else if (o.code == "KeyD" || o.code == "ArrowRight") {
+        xSpeed = 1;
+        ySpeed = 0;
+        console.log("right");
+    }
 
 }

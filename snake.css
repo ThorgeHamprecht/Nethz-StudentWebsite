@@ -200,6 +200,8 @@ body {
 
 }
 .main__content__snake {
+    margin-right: auto;
+    margin-left: auto;
     align-items: center;
     text-align: center;
 }
