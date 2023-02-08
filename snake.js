@@ -40,6 +40,11 @@ function update () {
     snakeX += xSpeed * blockSize;
     snakeY += ySpeed * blockSize;
 
+    //collision detection
+    if (snakeX === foodX && snakeY === foodY) {
+        placeCollectables();
+    }
+
     //draw collectables
     context.fillStyle = "salmon";
     context.fillRect(foodX, foodY, blockSize, blockSize);
