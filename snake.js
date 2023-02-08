@@ -16,6 +16,10 @@ var snakeY = blockSize * 5;
 var xSpeed = 0;
 var ySpeed = 0;
 
+// Between Update Direction
+var tempSpeedX = 0;
+var tempSpeedY = 0;
+
 // Snake Body
 var snakeBody = [];
 
@@ -43,7 +47,7 @@ window.onload = function () {
 }
 
 function update () {
-    //gameover update stop
+    //game-over update stop
     if (gameOver) {
         blinkingHead += 1;
         if (blinkingHead > 2) {
@@ -65,10 +69,13 @@ function update () {
     context.fillRect(0,0, board.width, board.height);
 
     //update position
-    snakeX += xSpeed * blockSize;
-    snakeY += ySpeed * blockSize;
+    snakeX += tempSpeedX * blockSize;
+    snakeY += tempSpeedY * blockSize;
+    //reassign speed, so snake cant turn into itself
+    xSpeed = tempSpeedX;
+    ySpeed = tempSpeedY;
 
-    //collision detection
+    //collision detection (with food)
     if (snakeX === foodX && snakeY === foodY) {
         snakeBody.push([snakeX, snakeY]);
         placeCollectables();
@@ -93,6 +100,11 @@ function update () {
         context.fillRect(snakeBody[i][0], snakeBody[i][1], blockSize, blockSize);
     }
 
+    //out of bounds check
+    if (snakeX < 0 && snakeX >= columns * blockSize && snakeY < 0 && snakeY >= rows * blockSize) {
+        gameOver = true;
+    }
+
     //draw snake head
     context.fillStyle = "lightseagreen";
     context.fillRect(snakeX, snakeY, blockSize, blockSize);
@@ -100,31 +112,44 @@ function update () {
 }
 
 function placeCollectables() {
+    var available = false;
+
+    //first assignment of random position
     foodX = Math.floor(Math.random() * columns) * blockSize;
     foodY = Math.floor(Math.random() * rows) * blockSize;
-    while (foodX === snakeX && foodY === snakeY) {
-        foodX = Math.floor(Math.random() * columns) * blockSize;
-        foodY = Math.floor(Math.random() * rows) * blockSize;
-    }
+
+    //free space check
+    /*while (!available) {
+        var counter = 0;
+        for (let i = 0; i < snakeBody.length; i++) {
+            if (foodX === snakeBody[i][0] && foodY === snakeBody[i][1]) {
+            }
+            else {
+                counter++;
+            }
+        }
+        if (counter === snakeBody.length - 1) {
+            available = true;
+        }
+    }*/
 }
 
 function movement(o) {
     if ((o.code === "KeyW" || o.code === "ArrowUp") && ySpeed !== 1){
-        xSpeed = 0;
-        ySpeed = -1;
-        console.log("test");
+        tempSpeedX = 0;
+        tempSpeedY = -1;
     }
     else if ((o.code === "KeyS" || o.code === "ArrowDown") && ySpeed !== -1) {
-        xSpeed = 0;
-        ySpeed = 1;
+        tempSpeedX = 0;
+        tempSpeedY = 1;
     }
     else if ((o.code === "KeyA" || o.code === "ArrowLeft") && xSpeed !== 1) {
-        xSpeed = -1;
-        ySpeed = 0;
+        tempSpeedX = -1;
+        tempSpeedY = 0;
     }
     else if ((o.code === "KeyD" || o.code === "ArrowRight") && xSpeed !== -1) {
-        xSpeed = 1;
-        ySpeed = 0;
+        tempSpeedX = 1;
+        tempSpeedY = 0;
     }
 
 }
