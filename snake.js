@@ -41,14 +41,14 @@ function update () {
     snakeX += xSpeed * blockSize;
     snakeY += ySpeed * blockSize;
 
+    //draw collectables
+    context.fillStyle = "salmon";
+    context.fillRect(foodX, foodY, blockSize, blockSize);
 
     //draw snake
     context.fillStyle = "lightseagreen";
     context.fillRect(snakeX, snakeY, blockSize, blockSize);
 
-    //draw collectables
-    context.fillStyle = "salmon";
-    context.fillRect(foodX, foodY, blockSize, blockSize);
 }
 
 function placeCollectables() {
@@ -64,22 +64,18 @@ function movement(o) {
     if (o.code == "KeyW" || o.code == "ArrowUp") {
         xSpeed = 0;
         ySpeed = -1;
-        console.log("up");
     }
     else if (o.code == "KeyS" || o.code == "ArrowDown") {
         xSpeed = 0;
         ySpeed = 1;
-        console.log("down");
     }
     else if (o.code == "KeyA" || o.code == "ArrowLeft") {
         xSpeed = -1;
         ySpeed = 0;
-        console.log("left");
     }
     else if (o.code == "KeyD" || o.code == "ArrowRight") {
         xSpeed = 1;
         ySpeed = 0;
-        console.log("right");
     }
 
 }
