@@ -12,12 +12,16 @@ var context;
 var snakeX = blockSize * 5;
 var snakeY = blockSize * 5;
 
+// Snake Speed
 var xSpeed = 0;
 var ySpeed = 0;
 
+// Snake Body
+var snakeBody = [];
+
 // Collectables
-var foodX = blockSize * 8;
-var foodY = blockSize * 9;
+var foodX = 0;
+var foodY = 0;
 
 window.onload = function () {
     board = document.getElementById("board");
@@ -25,7 +29,9 @@ window.onload = function () {
     board.width = columns * blockSize;
     context = board.getContext("2d");
 
+    snakeBody.push([snakeX, snakeY]);
     placeCollectables();
+
     document.addEventListener("keydown", movement);
 
     //update();
@@ -42,14 +48,27 @@ function update () {
 
     //collision detection
     if (snakeX === foodX && snakeY === foodY) {
+        snakeBody.push([snakeX, snakeY]);
         placeCollectables();
     }
+    //remove snake tail
+    else {
+        snakeBody.push([snakeX, snakeY]);
+        snakeBody.shift();
+    }
+
 
     //draw collectables
     context.fillStyle = "salmon";
     context.fillRect(foodX, foodY, blockSize, blockSize);
 
-    //draw snake
+    //draw snake body
+    for (let i = 0; i < snakeBody.length; i++) {
+        context.fillStyle = "seagreen";
+        context.fillRect(snakeBody[i][0], snakeBody[i][1], blockSize, blockSize);
+    }
+
+    //draw snake head
     context.fillStyle = "lightseagreen";
     context.fillRect(snakeX, snakeY, blockSize, blockSize);
 
