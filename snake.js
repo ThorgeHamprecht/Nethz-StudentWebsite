@@ -33,8 +33,7 @@ window.onload = function () {
 }
 
 function update () {
-    console.log(context);
-    context.fillStyle = "midnight";
+    context.fillStyle = "black";
     context.fillRect(0,0, board.width, board.height);
 
     //update position
@@ -54,26 +53,27 @@ function update () {
 function placeCollectables() {
     foodX = Math.floor(Math.random() * columns) * blockSize;
     foodY = Math.floor(Math.random() * rows) * blockSize;
-    while (foodX == snakeX && foodY == snakeY) {
+    while (foodX === snakeX && foodY === snakeY) {
         foodX = Math.floor(Math.random() * columns) * blockSize;
         foodY = Math.floor(Math.random() * rows) * blockSize;
     }
 }
 
 function movement(o) {
-    if (o.code == "KeyW" || o.code == "ArrowUp") {
+    if ((o.code === "KeyW" || o.code === "ArrowUp") && ySpeed !== 1){
         xSpeed = 0;
         ySpeed = -1;
+        console.log("test");
     }
-    else if (o.code == "KeyS" || o.code == "ArrowDown") {
+    else if ((o.code === "KeyS" || o.code === "ArrowDown") && ySpeed !== -1) {
         xSpeed = 0;
         ySpeed = 1;
     }
-    else if (o.code == "KeyA" || o.code == "ArrowLeft") {
+    else if ((o.code === "KeyA" || o.code === "ArrowLeft") && xSpeed !== 1) {
         xSpeed = -1;
         ySpeed = 0;
     }
-    else if (o.code == "KeyD" || o.code == "ArrowRight") {
+    else if ((o.code === "KeyD" || o.code === "ArrowRight") && xSpeed !== -1) {
         xSpeed = 1;
         ySpeed = 0;
     }
