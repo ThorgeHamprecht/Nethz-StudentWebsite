@@ -64,6 +64,13 @@ function update () {
             context.fillStyle = "gainsboro";
             context.fillRect(snakeX, snakeY, blockSize, blockSize);
         }
+
+        //game-over text
+        context.font = "3rem Kumbh sans";
+        context.textAlign = "center";
+        context.fillStyle = "snow";
+        context.fillText("Game Over!\n" + "Score: " + score, blockSize * columns / 2, blockSize * rows / 2);
+
         return;
     }
 
