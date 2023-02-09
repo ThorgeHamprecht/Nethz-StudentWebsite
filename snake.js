@@ -33,6 +33,7 @@ var gameOver = false;
 var blinkingHead = 0;
 var failReason = "";
 var score = 0;
+var restart = 0;
 
 window.onload = function () {
     board = document.getElementById("board");
@@ -51,9 +52,33 @@ window.onload = function () {
     setInterval(update, 1000/10);
 }
 
+function start () {
+
+    snakeX = blockSize * 5;
+    snakeY = blockSize * 5;
+    snakeBody.push([snakeX, snakeY]);
+
+    xSpeed = 0;
+    ySpeed = 0;
+    tempYspeed = 0;
+    tempXspeed = 0;
+
+    score = 0;
+
+    failReason = "";
+    gameOver = false;
+    restart = 0;
+    blinkingHead = 0;
+    foodX = 0;
+    foodY = 0;
+}
+
 function update () {
     //game-over update stop
     if (gameOver) {
+        restart += 1;
+
+
         blinkingHead += 1;
         if (blinkingHead > 2) {
             context.fillStyle = "tomato";
@@ -83,6 +108,9 @@ function update () {
         context.fillStyle = "snow";
         context.fillText("Game Over!", blockSize * columns / 2, blockSize * rows / 2 - 20);
         context.fillText("Score: " + score, blockSize * columns / 2, blockSize * rows / 2 + 20);
+        if (restart === 51) {
+            start();
+        }
         return;
     }
 
