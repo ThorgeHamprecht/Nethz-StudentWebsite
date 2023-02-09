@@ -221,3 +221,8 @@ body {
 .main__content p {
     font-size: 1rem;
 }
+.game__over p {
+    font-size: 2rem;
+    color: snow;
+    z-index: 99;
+}

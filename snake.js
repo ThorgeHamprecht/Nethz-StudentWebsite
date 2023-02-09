@@ -1,7 +1,6 @@
 document.body.style.overflow = "hidden";
 
-
-//board
+// Board
 var blockSize = 25;
 var rows = 20;
 var columns = 25;
@@ -66,11 +65,11 @@ function update () {
         }
 
         //game-over text
-        context.font = "3rem Kumbh sans";
+        context.font = "2rem Kumbh sans";
         context.textAlign = "center";
         context.fillStyle = "snow";
-        context.fillText("Game Over!\n" + "Score: " + score, blockSize * columns / 2, blockSize * rows / 2);
-
+        context.fillText("Game Over!", blockSize * columns / 2, blockSize * rows / 2 - 20);
+        context.fillText("Score: " + score, blockSize * columns / 2, blockSize * rows / 2 + 20);
         return;
     }
 
