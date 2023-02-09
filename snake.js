@@ -10,6 +10,8 @@ var context;
 // Snake Head
 var snakeX = blockSize * 5;
 var snakeY = blockSize * 5;
+var lastX;
+var lastY;
 
 // Snake Speed
 var xSpeed = 0;
@@ -29,6 +31,7 @@ var foodY = 0;
 // Game State
 var gameOver = false;
 var blinkingHead = 0;
+var failReason = "";
 var score = 0;
 
 window.onload = function () {
@@ -54,14 +57,24 @@ function update () {
         blinkingHead += 1;
         if (blinkingHead > 2) {
             context.fillStyle = "tomato";
-            context.fillRect(snakeX, snakeY, blockSize, blockSize);
+            if (failReason === "out of bounds") {
+                context.fillRect(lastX, lastY, blockSize, blockSize);
+            }
+            else {
+                context.fillRect(snakeX, snakeY, blockSize, blockSize);
+            }
             if (blinkingHead === 4 ) {
                 blinkingHead = 0;
             }
         }
         else {
             context.fillStyle = "gainsboro";
-            context.fillRect(snakeX, snakeY, blockSize, blockSize);
+            if (failReason === "out of bounds") {
+                context.fillRect(lastX, lastY, blockSize, blockSize);
+            }
+            else {
+                context.fillRect(snakeX, snakeY, blockSize, blockSize);
+            }
         }
 
         //game-over text
@@ -76,8 +89,10 @@ function update () {
     //fill canvas with black background
     context.fillStyle = "black";
     context.fillRect(0,0, board.width, board.height);
-    console.log("got here");
+
     //update position
+    lastX = snakeX;
+    lastY = snakeY
     snakeX += tempXspeed * blockSize;
     snakeY += tempYspeed * blockSize;
 
@@ -101,6 +116,7 @@ function update () {
     context.fillStyle = "salmon";
     context.fillRect(foodX, foodY, blockSize, blockSize);
 
+
     //draw snake body
     for (let i = 0; i < snakeBody.length; i++) {
         //gameover check
@@ -114,6 +130,7 @@ function update () {
     //out of bounds check
     if ((snakeX < 0 || snakeX >= columns * blockSize) || (snakeY < 0 || snakeY >= rows * blockSize)) {
         gameOver = true;
+        failReason = "out of bounds";
     }
 
     //draw snake head
