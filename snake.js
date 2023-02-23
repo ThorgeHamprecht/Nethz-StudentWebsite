@@ -33,7 +33,6 @@ var gameOver = false;
 var blinkingHead = 0;
 var failReason = "";
 var score = 0;
-var restart = 0;
 
 window.onload = function () {
     board = document.getElementById("board");
@@ -180,7 +179,7 @@ function movement(o) {
         tempXspeed = 1;
         tempYspeed = 0;
     }
-    else if (o.code == "KeyR") {
+    else if (o.code === "KeyR") {
         window.location.reload();
     }
 
